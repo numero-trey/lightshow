@@ -7,7 +7,8 @@
 #define BRT_PIN 0
 
 CRGB leds[NUM_LEDS];
-int lastBrightness = 255;
+uint8_t lastBrightness = 255;
+int pos;
 
 void setup() {
   FastLED.addLeds<NEOPIXEL, OUTPIN>(leds, NUM_LEDS);
@@ -32,16 +33,23 @@ void strobeAll() {
   delay(50);
 }
 
+#define RSTROBE_CHANCE 3
 // Flash random lights
 void rStrobe() {
-  int l = random16(SKULLS);
-  setSkull(l, CRGB::Red);
-  FastLED.show();
-  delay(5);
+  int l = random16(SKULLS + ((RSTROBE_CHANCE - 1) * SKULLS));
+  
+  fadeToBlackBy(leds, NUM_LEDS, 24);
 
-  setSkull(l, CRGB::Black);
+  if (l < SKULLS) {
+    setSkull(l, CRGB::White);
+    FastLED.show();
+    delay(10);
+    setSkull(l, CRGB(82, 0, 0));
+  }
+  
   FastLED.show();
-  delay(75);
+  
+  delay(50);
 }
 
 void setSkull(uint16_t ch, CRGB c) {
