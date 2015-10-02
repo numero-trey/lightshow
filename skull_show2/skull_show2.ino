@@ -33,10 +33,10 @@ void strobeAll() {
   delay(50);
 }
 
-#define RSTROBE_CHANCE 3
-// Flash random lights
-void rStrobe() {
-  int l = random16(SKULLS + ((RSTROBE_CHANCE - 1) * SKULLS));
+#define TSTROBE_CHANCE 3
+// Twinkle strobe w/color fade
+void tStrobe() {
+  int l = random16(SKULLS + ((TSTROBE_CHANCE - 1) * SKULLS));
   
   fadeToBlackBy(leds, NUM_LEDS, 24);
 
