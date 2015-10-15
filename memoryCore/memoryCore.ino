@@ -4,7 +4,7 @@
 #include <FastLED.h>
 
 //Config
-#define OUT_DATA 0
+#define OUT_DATA 11
 #define NUM_LEDS 8
 
 struct Spark {
@@ -26,7 +26,7 @@ void setup() {
 
   // Get our house in order before we begin
   //doBrightness();
-  FastLED.setDither( 0 );
+  //FastLED.setDither( 0 );
   //FastLED.setBrightness(128);
   random16_add_entropy(analogRead(1) << 4);
   //initSpark(0, 6, CHSV(60, 127, 255)); //Sad: 140
